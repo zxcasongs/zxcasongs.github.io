@@ -1,10 +1,23 @@
-﻿    # while
+---
+layout:     post                    # 使用的布局（不需要改）
+title:      while              # 标题 
+subtitle:   Hello World, Hello Blog  #副标题
+date:       2018-01-06              # 时间
+author:    chen                     # 作者
+header-img: img/post-bg-2015.jpg    #这篇文章标题背景图片
+catalog: true                       # 是否归档
+tags:                               #标签
+    - shell
+---
     
-    #!/bin/bash
+  
+```
+#!/bin/bash
     while read line
     do
             echo $line
     done < www.txt
+```
 
 
 ----------
