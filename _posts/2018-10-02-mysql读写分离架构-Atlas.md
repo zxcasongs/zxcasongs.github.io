@@ -40,20 +40,59 @@ mv test.cnf test.cnf.bak
 vi test.cnf （test为模块名）
 [mysql-proxy]
 admin-username = user
+管理接口的用户名
+
 admin-password = pwd
+管理接口的密码
+
 proxy-backend-addresses = 10.0.0.55:3306
+Atlas后端连接的MySQL主库的IP和端口，可设置多项，用逗号分隔
+
 proxy-read-only-backend-addresses = 10.0.0.51:3306,10.0.0.53:3306
+从库
+
 pwds = repl:3yb5jEku5h4=,mha:O2jBXONX098=
+用户名和密码配置项，需要和主从复制配置的用户名和密码配置一样
+
 daemon = true
 keepalive = true
+后台运行
+
+
 event-threads = 8
+工作线程数，对Atlas的性能有很大影响，可根据情况适当设置
+
 log-level = message
+日志级别，分为message、warning、critical、error、debug五个级别
+
 log-path = /usr/local/mysql-proxy/log
+日志存放的路径
+
 sql-log=ON
+SQL日志的开关，可设置为OFF、ON、REALTIME，OFF代表不记录SQL日志，ON代表记录SQL日志，REALTIME代表记录SQL日>志且实时写入磁盘，默认为OFF
+
+sql-log-slow = 1000
+慢日志输出设置。当设置了该参数时，则日志只输出执行时间超过sql-log-slow（单位：ms)的日志>记录。不设置该参数则输出全部日志。
+
+instance = web
+实例名称，用于同一台机器上多个Atlas实例间的区分
+
 proxy-address = 0.0.0.0:33060
+Atlas监听的工作接口IP和端口
+
 admin-address = 0.0.0.0:2345
+Atlas监听的管理接口IP和端口
+
+tables = person.mt.id.3
+分表设置，此例中person为库名，mt为表名，id为分表字段，3为子表数量，可设置多项，以逗号分>隔，若不分表则不需要设置该项
+
 charset=utf8
+默认字符集，设置该项后客户端不再需要执行SET NAMES语句
+
+client-ips = 127.0.0.1, 192.168.1
+允许连接Atlas的客户端的IP，可以是精确IP，也可以是IP段，以逗号分隔，若不设置该项则允许所>有IP连接，否则只允许列表中的IP连接
 启动atlas
+
 /usr/local/mysql-proxy/bin/mysql-proxyd test start
 ps -ef |grep proxy
 ```
