@@ -35,6 +35,9 @@ anchorjs: true                          # if you want to customize anchor. check
 # from PR#40, to support local preview for Jekyll 3.0
 gems: [jekyll-paginate]
 
+analytics:
+    baidu:
+        siteid: 4ecde57f568c79ae5bfa6e59f6aa78d7 
 
 
 
